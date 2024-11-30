@@ -95,14 +95,12 @@ class IrisMod(loader.Module):
         if "НЕЗАЧЁТ!" in event.raw_text:
             args = [int(x) for x in event.raw_text.split() if x.isnumeric()]
             randelta = random.randint(20, 60)
-            if len(args) == 4:
+            if len(args) == 3:
                 delta = timedelta(
-                    hours=args[1], minutes=args[2], seconds=args[3] + randelta
+                    hours=args[1], minutes=args[2] + randelta
                 )
-            elif len(args) == 3:
-                delta = timedelta(minutes=args[1], seconds=args[2] + randelta)
             elif len(args) == 2:
-                delta = timedelta(seconds=args[1] + randelta)
+                delta = timedelta(minutes=args[1] + randelta)
             else:
                 return
             sch = (
